@@ -10,7 +10,7 @@ first_last = [0,60]
 # name, first timestep, final timestep, timestep
 areas = ["Sensor","Inlet","Outlet","Walls","BoundaryTC"] # prefix for each filename
 
-sensorTemp = 273.15+80 #temperature set in the model for the sensor surface temp
+sensorTemp = 80 #temperature set in the model for the sensor surface temp
 
 alldata = []
 
@@ -45,6 +45,7 @@ print(alldata.columns)
 alldata.loc[alldata["flux"]==" null","flux"] = np.nan
 alldata.loc[alldata["convective flux"]==" null","convective flux"] = np.nan
 alldata.loc[alldata["HTC"]==" null","HTC"] = np.nan
+alldata["T"] = alldata["T"] - 273.15
 alldata["setT"] = sensorTemp
 
 alldata["radiative flux"] = alldata["flux"] - alldata["convective flux"]
