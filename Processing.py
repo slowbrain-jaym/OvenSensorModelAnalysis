@@ -10,6 +10,8 @@ first_last = [0,60]
 # name, first timestep, final timestep, timestep
 areas = ["Sensor","Inlet","Outlet","Walls","BoundaryTC"] # prefix for each filename
 
+sensorTemp = 273.15+80 #temperature set in the model for the sensor surface temp
+
 alldata = []
 
 for sensor in sensors:
@@ -21,7 +23,7 @@ for sensor in sensors:
             df = pd.read_csv(filename,header=3,error_bad_lines=False)
             df["time"] = timestep*1
             df["area"] = area
-            df["position"] = sensor[-1]
+            df["position"] = int(sensor[-1])
             alldata.append(df)
 alldata = pd.concat(alldata)
 column_names = {"X [ m ]":"x",
@@ -43,6 +45,7 @@ print(alldata.columns)
 alldata.loc[alldata["flux"]==" null","flux"] = np.nan
 alldata.loc[alldata["convective flux"]==" null","convective flux"] = np.nan
 alldata.loc[alldata["HTC"]==" null","HTC"] = np.nan
+alldata["setT"] = sensorTemp
 
 alldata["radiative flux"] = alldata["flux"] - alldata["convective flux"]
 
