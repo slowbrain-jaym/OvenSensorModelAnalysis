@@ -5,7 +5,7 @@ import numpy as np
 
 # Set the working directory as well as the names and 
 root_folder = r"C:\Users\jamen\Google Drive\Everything\Results\P1 Model\OvenHeatFluxSensor\\"
-sensors = ["Position1","Position2","Position3","Position4"] 
+sensors = ["Position1","Position2","Position3","Position4","Position1_Raised7","Position1_MaxPower8"] 
 first_last = [0,60]
 # name, first timestep, final timestep, timestep
 areas = ["Sensor","Inlet","Outlet","Walls","BoundaryTC"] # prefix for each filename
