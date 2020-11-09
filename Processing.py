@@ -5,7 +5,8 @@ import numpy as np
 
 # Set the working directory as well as the names and 
 root_folder = r"C:\Users\jamen\Google Drive\Everything\Results\P1 Model\OvenHeatFluxSensor\\"
-sensors = ["Position1","Position2","Position3","Position4","Position1_Raised7","Position1_MaxPower0"] 
+sensors = ["Position01","Position02","Position03","Position04","Position1_Raised07",
+"Position2_Raised08","Position4_Raised10","Position6_Raised12","Position1_MaxPower00"] 
 first_last = [0,60]
 # name, first timestep, final timestep, timestep
 areas = ["Sensor","Inlet","Outlet","Walls","BoundaryTC"] # prefix for each filename
@@ -23,7 +24,7 @@ for sensor in sensors:
             df = pd.read_csv(filename,header=3,error_bad_lines=False)
             df["time"] = timestep*1
             df["area"] = area
-            df["position"] = int(sensor[-1])
+            df["position"] = int(sensor[-2:])
             alldata.append(df)
 alldata = pd.concat(alldata)
 column_names = {"X [ m ]":"x",
